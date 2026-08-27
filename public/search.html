@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results | ShopNow</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a class="nav-logo" href="/"><span>Shop</span>Now</a>
+  <div class="nav-search">
+    <input type="text" id="nav-search-input" placeholder="Search products...">
+    <button id="nav-search-btn">🔍</button>
+  </div>
+  <div class="nav-right">
+    <a class="nav-link" href="/login" id="nav-account"><span>Hello, Sign in</span><span>Account & Lists</span></a>
+    <a class="nav-link" href="/orders"><span>Returns &</span><span>Orders</span></a>
+    <a class="nav-cart" href="/cart">🛒 Cart <span class="cart-count" id="cart-count" style="display:none">0</span></a>
+  </div>
+</nav>
+
+<div class="container" style="padding-top:24px;padding-bottom:40px">
+  <div class="search-layout">
+    <!-- Filters -->
+    <aside class="filters-box">
+      <div class="filter-title">🔽 Filter Results</div>
+      <form id="search-form">
+        <input type="text" id="search-input" placeholder="Search..." style="width:100%;padding:9px 12px;border:1px solid var(--gray-200);border-radius:8px;font-size:14px;margin-bottom:16px;outline:none">
+        <div class="filter-group">
+          <label>Category</label>
+          <select id="filter-category"><option value="">All Categories</option></select>
+        </div>
+        <div class="filter-group">
+          <label>Price Range: <span id="price-display">$0 – $9999</span></label>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="number" id="filter-min" placeholder="Min" style="width:70px;padding:6px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px">
+            <span>–</span>
+            <input type="number" id="filter-max" placeholder="Max" style="width:70px;padding:6px;border:1px solid var(--gray-200);border-radius:6px;font-size:12px">
+          </div>
+          <button type="button" id="apply-price" style="margin-top:8px;width:100%;padding:8px;background:var(--navy);color:white;border:none;border-radius:6px;font-size:13px;cursor:pointer">Apply Price</button>
+        </div>
+        <div class="filter-group">
+          <label>Min Rating</label>
+          <select id="filter-rating">
+            <option value="">Any Rating</option>
+            <option value="4.5">4.5★ & up</option>
+            <option value="4">4★ & up</option>
+            <option value="3">3★ & up</option>
+          </select>
+        </div>
+        <button type="submit" style="width:100%;padding:10px;background:var(--orange);color:var(--navy);border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:14px">🔍 Search</button>
+      </form>
+    </aside>
+
+    <!-- Results -->
+    <div>
+      <div id="search-meta" class="search-meta">Searching...</div>
+      <div class="products-grid" id="results-grid"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top</div>
+  <div class="footer-bottom"><div class="footer-logo"><span>Shop</span>Now</div><p style="margin-top:8px">© 2024 ShopNow, Inc.</p></div>
+</footer>
+
+<script src="/js/api.js"></script>
+<script src="/js/search.js"></script>
+<script>
+  document.getElementById('nav-search-btn').onclick = () => {
+    const q = document.getElementById('nav-search-input').value.trim();
+    if (q) { document.getElementById('search-input').value = q; doSearch(); }
+  };
+  document.getElementById('nav-search-input').onkeypress = e => { if (e.key === 'Enter') document.getElementById('nav-search-btn').click(); };
+</script>
+</body>
+</html>
